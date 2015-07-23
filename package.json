@@ -18,6 +18,7 @@
   "homepage": "https://github.com/last-indigo/-CDP-Web-Infrastructure",
   "devDependencies": {
     "gulp": "^3.9.0",
+    "gulp-uglify": "^1.2.0",
     "jscs": "^1.13.1",
     "jshint": "^2.8.0"
   }
