@@ -1,0 +1,19 @@
+{
+  "name": "-CDP-Web-Infrastructure",
+  "version": "1.0.0",
+  "description": "Init file",
+  "main": "all.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/last-indigo/-CDP-Web-Infrastructure.git"
+  },
+  "author": "AD",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/last-indigo/-CDP-Web-Infrastructure/issues"
+  },
+  "homepage": "https://github.com/last-indigo/-CDP-Web-Infrastructure"
+}
