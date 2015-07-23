@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/last-indigo/-CDP-Web-Infrastructure/issues"
   },
-  "homepage": "https://github.com/last-indigo/-CDP-Web-Infrastructure"
+  "homepage": "https://github.com/last-indigo/-CDP-Web-Infrastructure",
+  "devDependencies": {
+    "gulp": "^3.9.0"
+  }
 }
