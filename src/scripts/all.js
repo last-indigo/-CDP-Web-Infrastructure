@@ -1,3 +1,3 @@
-var fn = function( a, b ) {
+var fn = function( a, b, ) {
     return a + b;
 };
