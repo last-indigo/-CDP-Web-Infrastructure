@@ -36,7 +36,7 @@ gulp.task('lint', function () {
         .pipe(jscs())
 });
 
-gulp.task('scripts', ['lint'], function () {
+gulp.task('scripts', function () {
     return gulp.src( paths.scripts )
       .pipe(uglify())
       .pipe(concat('combined.js'))
