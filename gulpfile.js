@@ -20,7 +20,7 @@ var paths = {
   build: './build'
 }
 
-gulp.task('default', function() {
+gulp.task('default', ['clean', 'scripts', 'less'], function() {
   // place code for your default task here
 });
 
@@ -50,5 +50,5 @@ gulp.task('less', ['clean'], function () {
     }))
     .pipe(concat('combined.css'))
     .pipe(minify_css())
-    .pipe(gulp.dest( paths.build + '/css'))
+    .pipe(gulp.dest( paths.build ))
 });
