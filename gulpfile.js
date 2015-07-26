@@ -5,27 +5,38 @@ var jshint = require('gulp-jshint');
 var less = require('gulp-less');
 var minify_css = require('gulp-minify-css');
 var path = require('path');
+var del = require('del');
 
 var paths = {
-  scripts: 'src/scripts/**/*.js',
-  less: 'src/less/**/*.less'
+  scripts: [
+    'src/scripts/**/*.js',
+    'bower_components/bootstrap/js/**/*.js'
+  ],
+  less: 'src/less/**/*.less',
+  bootstrap_less: this.bootstrap + '/less/bootstrap.less',
+  build: './build'
 }
 
 gulp.task('default', function() {
   // place code for your default task here
 });
+
+gulp.task('clean', function(cb) {
+  // You can use multiple globbing patterns as you would with `gulp.src`
+  del(['build'], cb);
+});
  
-gulp.task('js', function () {
+gulp.task('lint', function () {
     return gulp.src( paths.scripts )
         .pipe(jshint())
         .pipe(jshint.reporter('default'))
         .pipe(jscs())
 });
 
-gulp.task('minify', function(){
+gulp.task('scripts', function () {
     return gulp.src( paths.scripts )
-        .pipe(uglify())
-        .pipe(gulp.dest('./build'));
+      .pipe(uglify())
+      .pipe(gulp.dest( paths.build ));
 });
 
 gulp.task('less', function () {
@@ -34,5 +45,5 @@ gulp.task('less', function () {
       paths: [ path.join(__dirname, 'less', 'includes') ]
     }))
     .pipe(minify_css())
-    .pipe(gulp.dest('./build/css'))
+    .pipe(gulp.dest( paths.build + '/css'))
 });
