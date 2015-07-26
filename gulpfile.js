@@ -13,8 +13,10 @@ var paths = {
     'src/scripts/**/*.js',
     'bower_components/bootstrap/js/**/*.js'
   ],
-  less: 'src/less/**/*.less',
-  bootstrap_less: this.bootstrap + '/less/bootstrap.less',
+  less: [
+    'src/less/**/*.less',
+    'bower_components/bootstrap/less/bootstrap.less'
+  ],
   build: './build'
 }
 
@@ -41,11 +43,12 @@ gulp.task('scripts', ['lint'], function () {
       .pipe(gulp.dest( paths.build ));
 });
 
-gulp.task('less', function () {
+gulp.task('less', ['clean'], function () {
   return gulp.src( paths.less )
     .pipe(less({
       paths: [ path.join(__dirname, 'less', 'includes') ]
     }))
+    .pipe(concat('combined.css'))
     .pipe(minify_css())
     .pipe(gulp.dest( paths.build + '/css'))
 });
