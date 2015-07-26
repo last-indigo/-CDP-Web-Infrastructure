@@ -20,7 +20,7 @@ var paths = {
   build: './build'
 }
 
-gulp.task('default', ['clean', 'scripts', 'less'], function() {
+gulp.task('default', ['clean', 'scripts', 'less', 'watch'], function() {
   // place code for your default task here
 });
 
@@ -52,3 +52,8 @@ gulp.task('less', ['clean'], function () {
     .pipe(minify_css())
     .pipe(gulp.dest( paths.build ))
 });
+
+gulp.task('watch', function () {
+  gulp.watch( paths.scripts, ['scripts'] );
+  gulp.watch( paths.less, ['less'] );
+})
