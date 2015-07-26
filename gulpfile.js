@@ -1,4 +1,5 @@
 var gulp = require('gulp');
+var plumber = require('gulp-plumber');
 var uglify = require('gulp-uglify');
 var concat = require('gulp-concat');
 var jscs = require('gulp-jscs');
@@ -38,6 +39,7 @@ gulp.task('lint', function () {
 
 gulp.task('scripts', function () {
     return gulp.src( paths.scripts )
+      .pipe(plumber())
       .pipe(uglify())
       .pipe(concat('combined.js'))
       .pipe(gulp.dest( paths.build ));
@@ -45,6 +47,7 @@ gulp.task('scripts', function () {
 
 gulp.task('less', ['clean'], function () {
   return gulp.src( paths.less )
+    .pipe(plumber())
     .pipe(less({
       paths: [ path.join(__dirname, 'less', 'includes') ]
     }))
