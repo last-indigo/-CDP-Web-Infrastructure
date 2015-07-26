@@ -1,5 +1,6 @@
 var gulp = require('gulp');
 var uglify = require('gulp-uglify');
+var concat = require('gulp-concat');
 var jscs = require('gulp-jscs');
 var jshint = require('gulp-jshint');
 var less = require('gulp-less');
@@ -36,6 +37,7 @@ gulp.task('lint', function () {
 gulp.task('scripts', function () {
     return gulp.src( paths.scripts )
       .pipe(uglify())
+      .pipe(concat('combined.js'))
       .pipe(gulp.dest( paths.build ));
 });
 
