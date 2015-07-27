@@ -10,10 +10,10 @@ var path = require('path');
 var del = require('del');
 
 var paths = {
-  scripts: [
-    'src/scripts/**/*.js',
-    'bower_components/bootstrap/js/**/*.js'
-  ],
+  scripts: {
+    user: 'src/scripts/**/*.js',
+    bootstrap: 'bower_components/bootstrap/js/**/*.js'
+  },
   less: [
     'src/less/**/*.less',
     'bower_components/bootstrap/less/bootstrap.less'
@@ -21,7 +21,7 @@ var paths = {
   build: './build'
 }
 
-gulp.task('default', ['clean', 'scripts', 'less', 'watch'], function() {
+gulp.task('default', ['clean', 'lint', 'scripts', 'less', 'watch'], function() {
   // place code for your default task here
 });
 
@@ -31,17 +31,17 @@ gulp.task('clean', function(cb) {
 });
  
 gulp.task('lint', function () {
-    return gulp.src( paths.scripts )
+    return gulp.src( paths.scripts.user )
         .pipe(jshint())
         .pipe(jshint.reporter('default'))
         .pipe(jscs())
 });
 
 gulp.task('scripts', function () {
-    return gulp.src( paths.scripts )
+    return gulp.src( [paths.scripts.user, paths.scripts.bootstrap] )
       .pipe(plumber())
-      .pipe(uglify())
       .pipe(concat('combined.js'))
+      .pipe(uglify())
       .pipe(gulp.dest( paths.build ));
 });
 
@@ -57,6 +57,6 @@ gulp.task('less', ['clean'], function () {
 });
 
 gulp.task('watch', function () {
-  gulp.watch( paths.scripts, ['scripts'] );
+  gulp.watch( [paths.scripts.user, paths.scripts.bootstrap], ['scripts'] );
   gulp.watch( paths.less, ['less'] );
 })
