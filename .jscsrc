@@ -1,5 +1,5 @@
 {
-
- "preset": "jquery"
-
+	"preset": "jquery",
+	"validateLineBreaks": null,
+	"requireLineFeedAtFileEnd": null
 }
